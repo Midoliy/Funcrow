@@ -3,6 +3,10 @@ open System.Runtime.InteropServices
 open System.IO
 open MaybeComputation
 open EitherComputation
+open StateComputation
+open System.Collections.Generic
+open System.Runtime.CompilerServices
+open System.Collections
 
 module Directory =
     let exists = Directory.Exists
@@ -52,5 +56,29 @@ module Directory =
 Directory.getFiles SearchOption.AllDirectories "*" "./"
 |> printfn "%A"
 
-
 Directory.delete "./hogehoge"
+
+
+let a : Either<exn, _> =
+    either {
+        let! ans = Right (6 / 3)
+        return ans
+    }
+
+let b : Either<exn, _> =
+    either {
+        let! ans = a
+        return ans + 50;
+    }
+
+
+let f = state { let! a = get
+                do! put (a * 3)
+                let! b = get
+                do! put (b * 3)
+                let! c = get
+                do! put (c * 3)
+                return (b, c) }
+
+printfn "%A" (f 3)
+printfn "%A" (evalState f 3)

@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="StateComputation.fs" />
     <Compile Include="MaybeComputation.fs" />
     <Compile Include="EitherComputation.fs" />
     <Compile Include="Program.fs" />
