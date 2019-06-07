@@ -71,7 +71,6 @@ let b : Either<exn, _> =
         return ans + 50;
     }
 
-
 let f = state { let! a = get
                 do! put (a * 3)
                 let! b = get
@@ -82,3 +81,13 @@ let f = state { let! a = get
 
 printfn "%A" (f 3)
 printfn "%A" (evalState f 3)
+
+let result : Either<exn, _> =
+    either {
+        let! ans = failwith "fail!!!"
+        return 0
+    }
+
+result |> function
+            | Right (r) -> printfn "%d" r
+            | Left (l) -> printfn "%s" l.Message 
