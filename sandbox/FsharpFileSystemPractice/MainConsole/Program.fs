@@ -91,3 +91,13 @@ let result : Either<exn, _> =
 result |> function
             | Right (r) -> printfn "%d" r
             | Left (l) -> printfn "%s" l.Message 
+
+let f1 v = Some v
+
+maybe {
+    let! a9 = f1 20
+    return a9
+}
+|> function
+    | Some v -> printfn "%d" v
+    | None -> printfn " --- "
