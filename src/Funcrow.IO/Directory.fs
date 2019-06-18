@@ -1,4 +1,4 @@
-﻿namespace Funcrow.IO
+namespace Funcrow.IO
 
 open System.IO
 open Funcrow.EitherComputation
@@ -6,17 +6,23 @@ open Funcrow.EitherComputation
 module Directory =
     let exists = Directory.Exists
 
-    let create path = 
+    let create path : Either<exn, _> = 
         path |> exists
              |> function
                 | true -> Right (DirectoryInfo (path))
-                | false -> try Right (Directory.CreateDirectory path) with exn as e -> Left e
+                | false -> either { return Directory.CreateDirectory path }
 
-    let deleteWithRecursive recursive path =
+    let aaa recursive path : Either<exn, _> =
         path |> exists
              |> function
-                | true -> try Directory.Delete (path, recursive); Right true with exn as e -> Left e
-                | false -> Right true 
+                | true -> either { return Directory.Delete (path, recursive) }
+                | false -> Right () 
+
+    let deleteWithRecursive recursive path : Either<exn, _> =
+        path |> exists
+             |> function
+                | true -> either { return Directory.Delete (path, recursive) }
+                | false -> Right () 
 
     let deleteAll path = 
         deleteWithRecursive true path
@@ -117,26 +123,26 @@ module Directory =
     let getParent path =
         try Some (Directory.GetParent path) with _ -> None
 
-    let move dstDirName srcDirName =
-        try Right (Directory.Move (srcDirName, dstDirName)) with exn as e -> Left e
+    let move dstDirName srcDirName : Either<exn, _> =
+        either { return Directory.Move (srcDirName, dstDirName) }
 
-    let setCreationTime creationTime path =
-        try Right (Directory.SetCreationTime (path, creationTime)) with exn as e -> Left e
+    let setCreationTime creationTime path : Either<exn, _> =
+        either { return Directory.SetCreationTime (path, creationTime) }
 
-    let setCreationTimeUtc creationTime path =
-        try Right (Directory.SetCreationTimeUtc (path, creationTime)) with exn as e -> Left e
+    let setCreationTimeUtc creationTime path : Either<exn, _> =
+        either { return Directory.SetCreationTimeUtc (path, creationTime) }
 
-    let setCurrentDirectory path =
-        try Right (Directory.SetCurrentDirectory path) with exn as e -> Left e
+    let setCurrentDirectory path : Either<exn, _> =
+        either { return Directory.SetCurrentDirectory path }
 
-    let setLastAccessTime lastAccessTime path =
-        try Right (Directory.SetCreationTime (path, lastAccessTime)) with exn as e -> Left e
+    let setLastAccessTime lastAccessTime path : Either<exn, _> =
+        either { return Directory.SetCreationTime (path, lastAccessTime) }
 
-    let setLastAccessTimeUtc lastAccessTime path =
-        try Right (Directory.SetCreationTimeUtc (path, lastAccessTime)) with exn as e -> Left e
+    let setLastAccessTimeUtc lastAccessTime path : Either<exn, _> =
+        either { return Directory.SetCreationTimeUtc (path, lastAccessTime) }
 
-    let setLastWriteTime lastWriteTime path =
-        try Right (Directory.SetCreationTime (path, lastWriteTime)) with exn as e -> Left e
+    let setLastWriteTime lastWriteTime path : Either<exn, _> =
+        either { return Directory.SetCreationTime (path, lastWriteTime) }
 
-    let setLastWriteTimeUtc lastWriteTimeUtc path =
-        try Right (Directory.SetCreationTimeUtc (path, lastWriteTimeUtc)) with exn as e -> Left e
+    let setLastWriteTimeUtc lastWriteTimeUtc path : Either<exn, _> =
+        either { return Directory.SetCreationTimeUtc (path, lastWriteTimeUtc) }
