@@ -1,4 +1,4 @@
-namespace Funcrow.Core
+namespace Funcrow
 
 module StateComputation =
     let private ret x = fun s -> (x, s)

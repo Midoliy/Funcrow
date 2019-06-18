@@ -6,6 +6,5 @@
     <Compile Include="CustomComputations/EitherComputation.fs" />
     <Compile Include="CustomComputations/MaybeComputation.fs" />
     <Compile Include="CustomComputations/StateComputation.fs" />
-    <Compile Include="Directory.fs" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-namespace Funcrow.Core
+namespace Funcrow
 
 module EitherComputation =
     type Either<'L, 'R> = Left of 'L | Right of 'R

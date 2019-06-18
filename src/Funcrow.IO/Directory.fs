@@ -1,7 +1,7 @@
-﻿namespace Funcrow
+﻿namespace Funcrow.IO
 
 open System.IO
-open EitherComputation
+open Funcrow.EitherComputation
 
 module Directory =
     let exists = Directory.Exists

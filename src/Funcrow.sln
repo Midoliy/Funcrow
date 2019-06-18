@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Funcrow.Core", "Funcrow.Core\Funcrow.Core.fsproj", "{D98767A1-32C9-4946-84EC-8C5168229A54}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Funcrow.IO", "Funcrow.IO\Funcrow.IO.fsproj", "{22396776-E1BD-42EC-A4E3-EC60692319AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{D98767A1-32C9-4946-84EC-8C5168229A54}.Release|x64.Build.0 = Release|Any CPU
 		{D98767A1-32C9-4946-84EC-8C5168229A54}.Release|x86.ActiveCfg = Release|Any CPU
 		{D98767A1-32C9-4946-84EC-8C5168229A54}.Release|x86.Build.0 = Release|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Debug|x64.Build.0 = Debug|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Debug|x86.Build.0 = Debug|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Release|x64.ActiveCfg = Release|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Release|x64.Build.0 = Release|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Release|x86.ActiveCfg = Release|Any CPU
+		{22396776-E1BD-42EC-A4E3-EC60692319AD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
