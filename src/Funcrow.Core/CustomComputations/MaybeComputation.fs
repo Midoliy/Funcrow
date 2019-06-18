@@ -1,4 +1,4 @@
-namespace Funcrow.Core
+namespace Funcrow
 
 module MaybeComputation =
     type public MaybeBuilder () =
