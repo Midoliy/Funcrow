@@ -12,12 +12,6 @@ module Directory =
                 | true -> Right (DirectoryInfo (path))
                 | false -> either { return Directory.CreateDirectory path }
 
-    let aaa recursive path : Either<exn, _> =
-        path |> exists
-             |> function
-                | true -> either { return Directory.Delete (path, recursive) }
-                | false -> Right () 
-
     let deleteWithRecursive recursive path : Either<exn, _> =
         path |> exists
              |> function
