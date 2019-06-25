@@ -328,3 +328,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+.ionide/symbolCache.db
+src/.ionide/symbolCache.db
+src/UT.Funcrow.Net/.ionide/symbolCache.db
