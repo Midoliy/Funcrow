@@ -23,7 +23,7 @@ let ``GET async`` url =
 [<InlineData("https://www.google.com")>]
 [<InlineData("https://midoliy.com")>]
 let ``POST async`` url = 
-    let param = Map<string, string> [ ("", ""); ]
+    let param = Map [ ("", ""); ]
     let content = new FormUrlEncodedContent (param)
 
     Async.StartWithContinuations(
