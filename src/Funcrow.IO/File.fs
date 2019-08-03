@@ -27,7 +27,7 @@ module File =
     
     let copyWith overwrite src dst = 
         if exists src then
-            if exists dst then Left (exn ("File exists already. [" + dst + "]"))
+            if exists dst then Left (exn ("File already exists. [" + dst + "]"))
                           else either { return File.Copy (src, dst, overwrite) }
         else Left (exn ("File not found. [" + src + "]"))
 
@@ -78,6 +78,6 @@ module File =
         
     let move dst src : Either<exn,_> = 
         if exists src then
-            if exists dst then Left (exn ("File exists already. [" + dst + "]"))
+            if exists dst then Left (exn ("File already exists. [" + dst + "]"))
                           else either { return File.Move (src, dst) }
         else Left (exn ("File not found. [" + src + "]"))
