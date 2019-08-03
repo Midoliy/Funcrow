@@ -1,9 +1,10 @@
 ﻿namespace Funcrow.IO
 
-open System.IO
-open Funcrow.EitherComputation
-
 module Directory =
+
+    open System.IO
+    open Funcrow.EitherComputation
+
     let exists = Directory.Exists
 
     let create path : Either<exn, _> =
