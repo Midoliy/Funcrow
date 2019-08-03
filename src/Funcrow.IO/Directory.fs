@@ -1,4 +1,4 @@
-namespace Funcrow.IO
+﻿namespace Funcrow.IO
 
 open System.IO
 open Funcrow.EitherComputation
@@ -6,17 +6,13 @@ open Funcrow.EitherComputation
 module Directory =
     let exists = Directory.Exists
 
-    let create path : Either<exn, _> = 
-        path |> exists
-             |> function
-                | true -> Right (DirectoryInfo (path))
-                | false -> either { return Directory.CreateDirectory path }
+    let create path : Either<exn, _> =
+        if exists path then Right (DirectoryInfo path)
+                       else either { return Directory.CreateDirectory path }
 
     let deleteWithRecursive recursive path : Either<exn, _> =
-        path |> exists
-             |> function
-                | true -> either { return Directory.Delete (path, recursive) }
-                | false -> Right () 
+        if exists path then either { return Directory.Delete (path, recursive) }
+                       else Right ()
 
     let deleteAll path = 
         deleteWithRecursive true path
@@ -25,10 +21,8 @@ module Directory =
         deleteWithRecursive false path
 
     let getFilesWithOptions pattern depth path =
-        path |> exists
-             |> function
-                | true -> try Some (Directory.GetFiles (path, pattern, depth)) with _ -> None
-                | false -> None
+        if exists path then try Some (Directory.GetFiles (path, pattern, depth)) with _ -> None
+                       else None
 
     let getFilesWithSearchDepth depth path = 
         getFilesWithOptions "*" depth path
@@ -37,10 +31,8 @@ module Directory =
         getFilesWithSearchDepth SearchOption.TopDirectoryOnly path
 
     let enumerateFilesWithOptions pattern depth path =
-        path |> exists
-             |> function
-                | true -> try Some (Directory.EnumerateFiles (path, pattern, depth)) with _ -> None
-                | false -> None
+        if exists path then try Some (Directory.EnumerateFiles (path, pattern, depth)) with _ -> None
+                       else None
 
     let enumerateFilesWithSearchDepth depth path = 
         enumerateFilesWithOptions "*" depth path
@@ -49,10 +41,8 @@ module Directory =
         enumerateFilesWithSearchDepth SearchOption.TopDirectoryOnly path
 
     let getDirectoriesWithOptions pattern depth path =
-        path |> exists
-             |> function
-                | true -> try Some (Directory.GetDirectories (path, pattern, depth)) with _ -> None
-                | false -> None
+        if exists path then try Some (Directory.GetDirectories (path, pattern, depth)) with _ -> None
+                       else None
 
     let getDirectoriesWithSearchDepth depth path = 
         getDirectoriesWithOptions "*" depth path
@@ -61,10 +51,8 @@ module Directory =
         getDirectoriesWithSearchDepth SearchOption.TopDirectoryOnly path
 
     let enumerateDirectoriesWithOptions pattern depth path =
-        path |> exists
-             |> function
-                | true -> try Some (Directory.EnumerateDirectories (path, pattern, depth)) with _ -> None
-                | false -> None
+        if exists path then try Some (Directory.EnumerateDirectories (path, pattern, depth)) with _ -> None
+                       else None
 
     let enumerateDirectoriesWithSearchDepth depth path = 
         enumerateDirectoriesWithOptions "*" depth path
@@ -72,44 +60,32 @@ module Directory =
     let enumerateDirectories path = 
         enumerateDirectoriesWithSearchDepth SearchOption.TopDirectoryOnly path
 
-    let getCreationTime path = 
-        path |> exists 
-             |> function 
-                | true -> try Some (Directory.GetCreationTime path) with _ -> None
-                | false -> None
+    let getCreationTime path =
+        if exists path then try Some (Directory.GetCreationTime path) with _ -> None
+                       else None
 
-    let getCreationTimeUtc path = 
-        path |> exists 
-             |> function 
-                | true -> try Some (Directory.GetCreationTimeUtc path) with _ -> None
-                | false -> None
+    let getCreationTimeUtc path =
+        if exists path then try Some (Directory.GetCreationTimeUtc path) with _ -> None
+                       else None
 
     let getCurrentDirectory = 
         try Some (Directory.GetCurrentDirectory) with _ -> None
 
     let getLastAccessTime path =
-        path |> exists 
-             |> function 
-                | true -> try Some (Directory.GetLastAccessTime path) with _ -> None
-                | false -> None
+        if exists path then try Some (Directory.GetLastAccessTime path) with _ -> None
+                       else None
 
     let getLastAccessTimeUtc path =
-        path |> exists 
-             |> function 
-                | true -> try Some (Directory.GetLastAccessTimeUtc path) with _ -> None
-                | false -> None
+        if exists path then try Some (Directory.GetLastAccessTimeUtc path) with _ -> None
+                       else None
 
     let getLastWriteTime path =
-        path |> exists 
-             |> function 
-                | true -> try Some (Directory.GetLastWriteTime path) with _ -> None
-                | false -> None
+        if exists path then try Some (Directory.GetLastWriteTime path) with _ -> None
+                       else None
 
     let getLastWriteTimeUtc path =
-        path |> exists 
-             |> function 
-                | true -> try Some (Directory.GetLastWriteTimeUtc path) with _ -> None
-                | false -> None
+        if exists path then try Some (Directory.GetLastWriteTimeUtc path) with _ -> None
+                       else None
 
     let getLogicalDrives =
         try Some (Directory.GetLogicalDrives) with _ -> None
